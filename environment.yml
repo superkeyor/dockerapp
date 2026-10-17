@@ -33,7 +33,6 @@ dependencies:
         - duckdb==1.5.6
         - duplicate-finder==1.4.0
         - ebooklib==0.20
-        - edge-tts==7.3.1
         - fake-useragent==2.2.0
         - gcsa==2.7.0
         - google-api-python-client==2.201.0
@@ -41,7 +40,6 @@ dependencies:
         - google-auth-httplib2==0.4.4
         - google-auth-oauthlib==1.5.0
         - gspread==6.2.1
-        - gtts==2.5.4
         - imap-tools==1.16.0
         - keyring==25.7.0
         - lxml==6.1.3
@@ -54,11 +52,10 @@ dependencies:
         - parse==1.22.3
         - pdfannots==0.5
         - pdfcropmargins==2.2.1
-        - pillow==12.3.0
+        - pillow==13.0.0
         - pyarrow==26.0.0
         - pymupdf==1.28.2
         - pyperclip==1.11.0
-        - pysubs2==1.9.0
         - python-docx==1.2.0
         - python-pptx==1.0.2
         - pytz==2026.5
@@ -74,4 +71,4 @@ dependencies:
         - xlwt==1.3.0
         - xmltodict==1.0.4
         - yagmail==0.16.0
-        - ez[extra]==11.9.4
+        - ez[extra]==11.9.5
