@@ -11,9 +11,10 @@ dependencies:
     - python=3.14.7
     - pip=26.2.1
     - pip:
-        - beautifulsoup4==4.15.0
+        - aiohttp==3.14.5
+	- beautifulsoup4==4.15.0
         - cachelib==0.17.0
-        - chardet==7.6.0
+        - chardet==7.7.0
         - dropbox==12.2.3
         - duplicate-finder==1.4.0
         - ebooklib==0.20
@@ -41,6 +42,7 @@ dependencies:
         - pdfcropmargins==2.2.1
         - pillow==13.0.0
         - pyarrow==26.0.0
+        - pydantic==2.14.1
         - pymupdf==1.28.2
         - pyperclip==1.11.0
         - python-docx==1.2.0
@@ -56,4 +58,4 @@ dependencies:
         - xlsxwriter==3.2.9
         - xlwt==1.3.0
         - yagmail==0.16.0
-        - ez==11.9.7
+        - ez==11.9.8
