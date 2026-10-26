@@ -44,13 +44,14 @@ ENV PATH=/opt/conda/envs/app/bin:$PATH
 # =============================================================================
 # Application Files
 # =============================================================================
-COPY . .
+COPY app/ .
+COPY start.sh crontab /
 
-RUN if [ "$ENABLE_CRON" = "true" ]; then crontab /app/crontab; fi
+RUN if [ "$ENABLE_CRON" = "true" ]; then crontab /crontab; fi
 
 # =============================================================================
 # Container Configuration
 # =============================================================================
 # Expose port for Flask application
 EXPOSE 5000
-CMD ["bash", "/app/start.sh"]
+CMD ["bash", "/start.sh"]

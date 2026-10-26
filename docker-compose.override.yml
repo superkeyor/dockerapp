@@ -20,7 +20,7 @@ services:
         environment:
             - APP_ENV=development
         volumes:
-            - .:/app # Enable hot-reloading
+            - ./app:/app # Enable hot-reloading
     myapp_db:
         ports:
             - "5432:5432" # Allows you to connect via DBeaver/PgAdmin locally
