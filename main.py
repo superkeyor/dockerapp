@@ -1,6 +1,6 @@
 import os
 exec("try:HERE=os.path.dirname(os.path.abspath(__file__));_=sys.path.remove(HERE) if HERE in sys.path else 0;sys.path.insert(0,HERE)\nexcept:HERE=os.getcwd()") # HERE for interactive run
-DEBUG=os.getenv('FLASK_ENV')=='development'
+DEBUG=os.getenv('APP_ENV')=='development'
 
 from flask import Flask, request, jsonify
 app = Flask(__name__)

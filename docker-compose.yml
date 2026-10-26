@@ -13,7 +13,7 @@ services:
         ports:
             - "127.0.0.1:5000:5000"
         environment:
-            - FLASK_ENV=production
+            - APP_ENV=production
             # Format: postgresql://USER:PASSWORD@HOST:PORT/NAME  (HOST is service/container name for Docker built-in DNS)
             - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@myapp_db:5432/myapp
         depends_on:

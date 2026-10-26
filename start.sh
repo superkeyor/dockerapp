@@ -5,7 +5,7 @@ if [ "$ENABLE_CRON" = "true" ]; then
     cron  # no & needed; cron daemonizes itself
 fi
 
-if [ "$FLASK_ENV" = "development" ]; then
+if [ "$APP_ENV" = "development" ]; then
     # flask provides debug, hot reload
     python main.py
 else

@@ -7,7 +7,7 @@ channels:
     - conda-forge
     - nodefaults
 dependencies:
-    # mamba search "*duckdb*=*=*py314*"
+    # mamba search "*pkg*=*=*py314*"
     - python=3.14.7
     - pip=26.2.1
     - pip:

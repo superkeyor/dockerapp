@@ -18,7 +18,7 @@ services:
             # cannot override 127.0.0.1:5000:5000 (merge just append)
             - "5001:5000"
         environment:
-            - FLASK_ENV=development
+            - APP_ENV=development
         volumes:
             - .:/app # Enable hot-reloading
     myapp_db:
