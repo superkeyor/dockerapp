@@ -1,4 +1,4 @@
-# Target: Linux ARM64 (aarch64, glibc), matching pi's Python 3.14.7.
+# Target: Linux ARM64 (aarch64, glibc), matching pi's Python 3.14.x
 # Only direct main/extra requirements from ez's pyproject.toml are pinned.
 # Transitive dependencies are resolved automatically at installation time.
 # Direct pins retain the previously selected versions; this is not a full lock.
@@ -8,7 +8,7 @@ channels:
     - nodefaults
 dependencies:
     # mamba search "*pkg*=*=*py314*"
-    - python=3.14.8
+    - python=3.14.9
     - pip=26.2.1
     - pip:
         - aiohttp==3.14.5
