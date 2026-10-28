@@ -14,13 +14,17 @@ DOCKERHUB_USER="superkeyor"
 REPO_VISIBILITY="--public"
 
 # ── Per-project overrides (new projects from dinit start with these values) ───
-RUN_GIT=true      # true/false: git add + commit (+ push to GitHub if not local)
+RUN_GIT=true       # true/false: git add + commit (+ push to GitHub if not local)
 
-RUN_DOCKER=true   # true/false: docker hub build + push, skip if repo is private or local
+# RUN_DOCKER:
+#   false here, so the template itself is never pushed to Docker Hub
+#   new projects: dinit keeps false; dinit --public switches it to true
+#   even when true, the push is skipped if the repo is private or local
+RUN_DOCKER=false   # true/false: docker hub build + push, skip if repo is private or local
 DOCKER_CHOICE="1"  # ""=ask (Enter = 1, native), "1"=native, "2"=buildx multi-platform, "3"=skip
 
-RUN_REMOTE=false  # true/false: rsync + remote docker build
-SSH_LOGIN=""      # e.g. 'ssh -p 2023 parallels@192.168.1.81'
+RUN_REMOTE=false   # true/false: rsync + remote docker build
+SSH_LOGIN=""       # e.g. 'ssh -p 2023 parallels@192.168.1.81'
 # ─────────────────────────────────────────────────────────────────────────────
 
 # ── 0. Secrets: .env must be 600 (rsync -a carries this to the remote) ──────
