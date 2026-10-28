@@ -1,28 +1,21 @@
 # ==============================================================================
 # DOCKER COMPOSE OVERRIDE (DEVELOPMENT)
 # ==============================================================================
-# HOW TO RUN:
-# 1. DEVELOPMENT: 'docker compose up -d'
-#    -> If this file is present, Docker merges it with 'docker-compose.yml'.
-#
-# 2. PRODUCTION:  'docker compose up -d'
-#    -> If you ensure this override file is NOT present on the server, Docker only 
-#       uses the base 'docker-compose.yml'.
-#    -> Alternatively, use 'docker compose -f docker-compose.yml up -d' to 
-#       explicitly ignore this file if it exists on the server.
+# docker-compose.override.yml auto merged with docker-compose.yml by 'docker compose up -d'
+# To avoid override (e.g. production), run explicitly 'docker compose -f docker-compose.yml up -d'
 # ==============================================================================
 services:
-    myapp:
-        ports:
+    dockerapp:
+        # !override replaces the base ports (127.0.0.1:5000) instead of appending
+        ports: !override
             # Open to all interfaces for local testing
-            # cannot override 127.0.0.1:5000:5000 (merge just append)
-            - "5001:5000"
+            - "5000:5000"
         environment:
             - APP_ENV=development
         volumes:
-            - ./app:/app # Enable hot-reloading
-    myapp_db:
+            - ./app:/app  # Enable hot-reloading
+    dockerapp_db:
         ports:
-            - "5432:5432" # Allows you to connect via DBeaver/PgAdmin locally
+            - "5432:5432"  # Allows you to connect via DBeaver/PgAdmin locally
         volumes:
-            - ./db:/var/lib/postgresql/data # Local project folder
+            - ./db:/var/lib/postgresql/data  # Local project folder

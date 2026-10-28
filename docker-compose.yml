@@ -1,30 +1,29 @@
-# ==============================================================================
-# SECURITY NOTE: Environment variables are defined here directly, not in a .env file,
-# to prevent accidental exposure through misconfigured servers or backups.
-#
-# WARNING: This file contains plain text secrets. DO NOT commit to version control.
-# Keep only on the production server with restricted permissions.
-# ==============================================================================
 services:
-    myapp:
-        image: myapp:latest
-        container_name: myapp
+    dockerapp:
+        image: dockerapp:latest
+        container_name: dockerapp
         restart: always
         ports:
             - "127.0.0.1:5000:5000"
+        # env_file -> loads every variable in the file into the container's environment
+        # so os.environ["SECRET_KEY"] works without python-dotenv
+        # .env is relative to this docker-compose.yml's folder (also when pulled in via include),
+        # so no absolute path or ${HOME} needed (${HOME} may be `root` under sudo)
+        env_file:
+            - .env
+        # environment -> wins over env_file if the same name is in both
         environment:
             - APP_ENV=production
-            # Format: postgresql://USER:PASSWORD@HOST:PORT/NAME  (HOST is service/container name for Docker built-in DNS)
-            - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@myapp_db:5432/myapp
         depends_on:
-            - myapp_db
-    myapp_db:
+            - dockerapp_db
+    dockerapp_db:
         image: postgres:18-alpine
-        container_name: myapp_db
+        container_name: dockerapp_db
         restart: always
+        # POSTGRES_USER and POSTGRES_PASSWORD come from .env
+        env_file:
+            - .env
         environment:
-            POSTGRES_USER: ${DB_USER}
-            POSTGRES_PASSWORD: ${DB_PASSWORD}
-            POSTGRES_DB: myapp
+            POSTGRES_DB: dockerapp
         volumes:
-            - /data/myapp/db:/var/lib/postgresql/data # Production system path
+            - /data/dockerapp/db:/var/lib/postgresql/data  # Production system path
