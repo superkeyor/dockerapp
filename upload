@@ -3,16 +3,21 @@ csd="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 [[ "$csd" == *.app/Contents/Resources ]] && csd="$(dirname "$(dirname "$(dirname "$csd")")")"
 cd "$csd"
 
+# ── Project identity ──────────────────────────────────────────────────────────
+# dinit sets these four for each new project. REPO_VISIBILITY comes from dinit's
+# --private (default), --public or --local.
+# In the dockerapp template repo they describe the template itself, which must
+# stay public because `gittemplate` downloads files from it.
 REPO_NAME="dockerapp"
 GITHUB_USER="superkeyor"
 DOCKERHUB_USER="superkeyor"
 REPO_VISIBILITY="--public"
 
-# ── Per-project overrides ─────────────────────────────────────────────────────
+# ── Per-project overrides (new projects from dinit start with these values) ───
 RUN_GIT=true      # true/false: git add + commit (+ push to GitHub if not local)
 
-RUN_DOCKER=false   # true/false: docker hub build + push
-DOCKER_CHOICE=""  # ""=ask, "1"=native, "2"=buildx multi-platform, "3"=skip
+RUN_DOCKER=true   # true/false: docker hub build + push, skip if repo is private or local
+DOCKER_CHOICE="1"  # ""=ask (Enter = 1, native), "1"=native, "2"=buildx multi-platform, "3"=skip
 
 RUN_REMOTE=false  # true/false: rsync + remote docker build
 SSH_LOGIN=""      # e.g. 'ssh -p 2023 parallels@192.168.1.81'
@@ -43,6 +48,8 @@ if [[ "$RUN_DOCKER" == false ]]; then
 elif [[ $(command -v docker) != "" ]]; then
     if [[ "${REPO_VISIBILITY}" == "--private" ]]; then
         echo "Repo is private. Skipping Docker Hub push."
+    elif [[ "${REPO_VISIBILITY}" == "--local" ]]; then
+        echo "Local mode: skipping Docker Hub push."
     else
         if [[ -z "$DOCKER_CHOICE" ]]; then
             echo "Push to Docker Hub ${DOCKERHUB_USER}/${REPO_NAME}:latest?"
