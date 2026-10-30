@@ -28,6 +28,8 @@
 # Secrets
 **/.env
 **/.env.*
+**/archive/
+**/vault/
 **/secret/
 **/secrets/
 **/secret.py
