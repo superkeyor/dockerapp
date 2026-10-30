@@ -9,6 +9,8 @@
 .env
 .env.*
 !.env.example
+archive/
+vault/
 secret/
 secrets/
 secret.py
